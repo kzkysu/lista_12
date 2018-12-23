@@ -5,19 +5,19 @@
 #include <stdio.h>
 
 const int maxdl = 50;
-char opis[1000];
+//char opis[1000];
 
 int main(int argc, char *argv[])
 {
-	//int dl=strlen(argv[2]);
-//	printf("%d", dl);
-	int ch=0;
 	int dl=0; 
-	while((ch =  getchar())!=EOF && dl<1000 )
+	FILE *plik = fopen(argv[1],"r");
+	int ch;
+	while( (ch=fgetc(plik))!=EOF )
 	{
-		opis[dl]=ch;
+		if( ch == '\n' ) break;
 		dl++;
 	}
+	fclose(plik);
 	printf("\n\n");
 	if( dl > maxdl )
 	{
@@ -25,10 +25,6 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 	else printf("Dlugosc opisu odpowiednia: %d\n", dl );
-	for( int i=0;i<dl; i++ )
-	{
-		printf("%c",argv[0][i]);
-	}
 	printf("\n\n");
 	return 0; 
 }
